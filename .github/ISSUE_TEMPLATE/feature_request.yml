@@ -1,0 +1,114 @@
+name: 💡 Feature Request
+description: Suggest an idea for this project
+title: "[Feature]: "
+labels: ["enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a new feature!
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear and concise description of what the problem is.
+      placeholder: I'm always frustrated when...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: A clear and concise description of what you want to happen.
+      placeholder: It would be great if...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives you've considered
+      description: A clear and concise description of any alternative solutions or features you've considered.
+      placeholder: I also thought about...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Feature Scope
+      description: Which part of the application does this affect?
+      options:
+        - Frontend (UI/UX)
+        - Backend (API/ML Model)
+        - Both Frontend and Backend
+        - Documentation
+        - CI/CD Pipeline
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature?
+      options:
+        - Low (nice to have)
+        - Medium (would be useful)
+        - High (important improvement)
+        - Critical (blocks adoption/usage)
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples/Mockups
+      description: If applicable, provide examples, screenshots, or mockups of how this feature would work.
+      placeholder: Drag and drop images or provide links to mockups
+    validations:
+      required: false
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Benefits
+      description: How would this feature benefit users or the project?
+      placeholder: This feature would help users by...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: Would you like to contribute?
+      description: Are you willing to implement this feature?
+      options:
+        - Yes, I'd like to implement it
+        - Maybe, I can help
+        - No, I'm just suggesting the idea
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context, links, or resources about the feature request here.
+      placeholder: Any other details...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing feature requests to make sure this is not a duplicate
+          required: true
+        - label: This feature aligns with the project's goals (fake job detection)
+          required: true

@@ -39,3 +39,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python virtual environment
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Python IDE
+.vscode/
+.idea/
+
+# ML model training artifacts (keep the actual model files)
+*.joblib
+model_temp_*.pkl
