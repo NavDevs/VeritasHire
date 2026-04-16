@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: veritashire
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: bash render-build.sh
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.0.0
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: NODE_ENV
+        value: production
+      - key: PYTHONPATH
+        value: .
+    healthCheckPath: /
+    autoDeploy: true
