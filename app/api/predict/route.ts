@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { exec } from "child_process";
+import { spawn } from "child_process";
 import path from "path";
 
 export async function POST(request: Request): Promise<Response> {
@@ -13,27 +13,60 @@ export async function POST(request: Request): Promise<Response> {
     // Path to the Python prediction script
     const scriptPath = path.join(process.cwd(), "predict.py");
 
-    // Run Python script with job description
     return new Promise<Response>((resolve) => {
-      exec(
-        `python "${scriptPath}" "${jobDescription.replace(/"/g, '\\"')}"`,
-        (error, stdout, stderr) => {
-          if (error) {
-            console.error("Python execution error:", error);
-            // Fallback to mock prediction if Python fails
-            resolve(getMockPrediction(jobDescription));
-            return;
-          }
+      // Use python3 if available, falling back to python
+      const pythonProcess = spawn("python3", [scriptPath]);
+      
+      let stdoutData = "";
+      let stderrData = "";
+      
+      // Implement a timeout to prevent hanging requests (502s)
+      const timeoutId = setTimeout(() => {
+        pythonProcess.kill('SIGKILL');
+        console.error("Python process timed out after 30 seconds");
+        resolve(getMockPrediction(jobDescription));
+      }, 30000);
 
-          try {
-            const result = JSON.parse(stdout);
-            resolve(NextResponse.json(result));
-          } catch {
-            // If parsing fails, use mock prediction
-            resolve(getMockPrediction(jobDescription));
-          }
+      pythonProcess.stdout.on("data", (data) => {
+        stdoutData += data.toString();
+      });
+
+      pythonProcess.stderr.on("data", (data) => {
+        stderrData += data.toString();
+      });
+
+      pythonProcess.on("close", (code) => {
+        clearTimeout(timeoutId);
+        
+        if (code !== 0) {
+          console.error(`Python execution exited with code ${code}`);
+          console.error(`Stderr: ${stderrData}`);
+          resolve(getMockPrediction(jobDescription));
+          return;
         }
-      );
+
+        try {
+          // Find the JSON block from output (avoids parsing non-JSON warnings from Python libraries)
+          const jsonStartIndex = stdoutData.indexOf('{');
+          if (jsonStartIndex === -1) throw new Error("No JSON object found in output");
+          
+          const result = JSON.parse(stdoutData.substring(jsonStartIndex));
+          resolve(NextResponse.json(result));
+        } catch (e) {
+          console.error("Failed to parse Python output:", e);
+          resolve(getMockPrediction(jobDescription));
+        }
+      });
+
+      pythonProcess.on("error", (error) => {
+        clearTimeout(timeoutId);
+        console.error("Failed to start Python process. It may not be installed. Falling back to mock:", error);
+        resolve(getMockPrediction(jobDescription));
+      });
+
+      // Write description to stdin, bypassing command-line length limits and shell escaping issues
+      pythonProcess.stdin.write(jobDescription);
+      pythonProcess.stdin.end();
     });
   } catch (error) {
     console.error("API error:", error);

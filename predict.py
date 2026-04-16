@@ -249,7 +249,14 @@ def predict(job_description):
         print(json.dumps(error_result))
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
+    # If an argument is provided, use it (for backwards compatibility/testing)
+    if len(sys.argv) > 1:
+        job_description = sys.argv[1]
+    else:
+        # Otherwise read from stdin (safer, handles large text and special characters)
+        job_description = sys.stdin.read()
+        
+    if not job_description or not job_description.strip():
         print(json.dumps({
             'error': 'No job description provided',
             'isFake': False,
@@ -257,5 +264,4 @@ if __name__ == "__main__":
         }))
         sys.exit(1)
     
-    job_description = sys.argv[1]
     predict(job_description)
