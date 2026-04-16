@@ -90,23 +90,23 @@ export default function RecentAnalysis() {
 
       {/* Navbar */}
       <nav className="bg-background/80 border-border/50 fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Link href="/" className="flex items-center gap-2">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+          <div className="flex h-20 items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Link href="/" className="flex items-center gap-3">
                 <img
                   src="/logo.svg"
                   alt="VeritasHire Logo"
-                  width={32}
-                  height={32}
-                  className="sm:h-10 sm:w-10"
+                  width={36}
+                  height={36}
+                  className="h-9 w-9 sm:h-10 sm:w-10"
                 />
-                <span className="font-heading text-foreground text-lg font-bold sm:text-xl">
+                <span className="font-heading text-foreground text-xl font-bold sm:text-2xl">
                   VeritasHire
                 </span>
               </Link>
             </div>
-            <div className="flex gap-2 sm:gap-3">
+            <div className="flex gap-2 sm:gap-4">
               <Link href="/">
                 <Button variant="outline" size="sm" className="text-xs sm:text-sm">
                   Back to Home

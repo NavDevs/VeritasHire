@@ -22,23 +22,23 @@ export default function Home() {
 
       {/* Navbar */}
       <nav className="bg-background/80 border-border/50 fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center gap-2">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+          <div className="flex h-20 items-center justify-between">
+            <div className="flex items-center gap-3">
               <Image
                 src="/logo.svg"
                 alt="VeritasHire Logo"
-                width={32}
-                height={32}
-                className="sm:h-10 sm:w-10"
+                width={36}
+                height={36}
+                className="h-9 w-9 sm:h-10 sm:w-10"
               />
-              <span className="font-heading text-foreground text-lg font-bold sm:text-xl">
+              <span className="font-heading text-foreground text-xl font-bold sm:text-2xl">
                 VeritasHire
               </span>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden gap-3 md:flex">
+            <div className="hidden gap-4 md:flex">
               <Link href="/recent">
                 <Button variant="outline" size="sm">
                   Recent Analysis
@@ -57,7 +57,7 @@ export default function Home() {
 
             {/* Mobile Menu Button */}
             <button
-              className="hover:bg-muted rounded-lg p-2 transition-colors md:hidden"
+              className="hover:bg-muted -mr-2 rounded-xl p-3 transition-colors md:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
@@ -67,15 +67,15 @@ export default function Home() {
 
           {/* Mobile Menu Dropdown */}
           {mobileMenuOpen && (
-            <div className="border-border/50 animate-in slide-in-from-top-2 space-y-3 border-t py-4 md:hidden">
+            <div className="border-border/50 animate-in slide-in-from-top-2 flex flex-col gap-4 border-t py-6 md:hidden">
               <Link href="/recent" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" size="default" className="w-full justify-center">
+                <Button variant="outline" size="lg" className="w-full justify-center">
                   Recent Analysis
                 </Button>
               </Link>
               <Button
                 variant="outline"
-                size="default"
+                size="lg"
                 className="w-full justify-center"
                 onClick={() => {
                   document.getElementById("analyzer")?.scrollIntoView({ behavior: "smooth" });
