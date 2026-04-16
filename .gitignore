@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Vercel build cache
+.vercel_cache
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
@@ -58,3 +61,7 @@ ENV/
 # ML model training artifacts (keep the actual model files)
 *.joblib
 model_temp_*.pkl
+
+# Keep ML models - DO NOT ignore these
+# ml-models/model.pkl
+# ml-models/vectorizer.pkl

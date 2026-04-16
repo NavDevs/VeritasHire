@@ -193,28 +193,28 @@ def predict(job_description):
         
         # Enhanced logic: If risk factors are high, override ML model prediction
         # This helps catch scams the ML model might miss
-        # RAISED thresholds to reduce false positives
+        # LOWERED thresholds to catch more fake jobs (improved recall)
         is_fake_by_ml = bool(prediction == 1)
-        is_fake_by_rules = risk_score > 70 or (len(risk_factors) >= 4 and risk_score > 50)  # Increased from 50/40
+        is_fake_by_rules = risk_score > 50 or (len(risk_factors) >= 3 and risk_score > 35)  # Lowered from 70/50
         
-        # Use rules-based detection ONLY if risk factors VERY strongly indicate fake
+        # Use rules-based detection if risk factors strongly indicate fake
         is_fake = is_fake_by_ml or is_fake_by_rules
         
         # Adjust confidence based on risk factors
         if is_fake_by_rules and not is_fake_by_ml:
             # Rules detected fake but ML didn't - increase fake confidence
-            confidence_fake = max(confidence_fake, 0.70 + (risk_score / 400))  # More conservative
-            confidence_fake = min(confidence_fake, 0.95)  # Cap at 95%
+            confidence_fake = max(confidence_fake, 0.75 + (risk_score / 500))  # More aggressive
+            confidence_fake = min(confidence_fake, 0.98)  # Cap at 98%
             confidence_real = 1 - confidence_fake
         elif is_fake:
             # Both agree or ML detected fake - use higher confidence
-            confidence_fake = max(confidence_fake, 0.65 + (risk_score / 400))  # More conservative
-            confidence_fake = min(confidence_fake, 0.95)  # Cap at 95%
+            confidence_fake = max(confidence_fake, 0.70 + (risk_score / 500))  # More aggressive
+            confidence_fake = min(confidence_fake, 0.98)  # Cap at 98%
             confidence_real = 1 - confidence_fake
         
         # Final validation to ensure valid probabilities
-        confidence_fake = max(0.05, min(0.95, confidence_fake))
-        confidence_real = max(0.05, min(0.95, confidence_real))
+        confidence_fake = max(0.05, min(0.98, confidence_fake))
+        confidence_real = max(0.05, min(0.98, confidence_real))
         
         # Ensure they sum to 1
         total = confidence_fake + confidence_real

@@ -23,7 +23,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <div className="grid md:grid-cols-3 gap-12 relative">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 relative">
       {steps.map((step, index) => (
         <motion.div
           key={index}
@@ -34,21 +34,21 @@ export function HowItWorks() {
           className="relative"
         >
           {/* Step Number */}
-          <div className="absolute -top-4 -left-4 h-12 w-12 rounded-full bg-secondary text-secondary-foreground font-heading font-bold text-lg flex items-center justify-center shadow-float">
+          <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-secondary text-secondary-foreground font-heading font-bold text-base sm:text-lg flex items-center justify-center shadow-float">
             {index + 1}
           </div>
 
           {/* Icon Container */}
-          <div className="h-20 w-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 transition-all duration-300 hover:bg-primary group">
+          <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 sm:mb-6 transition-all duration-300 hover:bg-primary group">
             <step.icon
-              size={32}
-              className="text-primary transition-colors duration-300 group-hover:text-white"
+              size={28}
+              className="sm:w-8 sm:h-8 text-primary transition-colors duration-300 group-hover:text-white"
             />
           </div>
 
           {/* Content */}
-          <h3 className="text-xl font-heading font-bold mb-3">{step.title}</h3>
-          <p className="text-muted-foreground leading-relaxed">
+          <h3 className="text-lg sm:text-xl font-heading font-bold mb-2 sm:mb-3">{step.title}</h3>
+          <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
             {step.description}
           </p>
         </motion.div>

@@ -170,8 +170,8 @@ function getMockPrediction(jobDescription: string) {
   confidenceFake = Math.max(0.5, confidenceFake + (Math.random() * 0.1 - 0.05));
   confidenceReal = 1 - confidenceFake;
 
-  // Determine if fake - RAISED thresholds to reduce false positives
-  isFake = riskScore > 70 || (riskFactors.length >= 4 && riskScore > 50);
+  // Determine if fake - LOWERED thresholds to catch more fake jobs (improved recall)
+  isFake = riskScore > 50 || (riskFactors.length >= 3 && riskScore > 35);
   
   // Determine risk level
   let riskLevel = "LOW";
@@ -182,7 +182,7 @@ function getMockPrediction(jobDescription: string) {
   const skills = extractSkills(jobDescription);
 
   // Enhanced logic: If risk factors are high, override basic prediction
-  const isFakeByRules = riskScore > 70 || (riskFactors.length >= 4 && riskScore > 50);
+  const isFakeByRules = riskScore > 50 || (riskFactors.length >= 3 && riskScore > 35);
   const finalIsFake = isFake || isFakeByRules;
   
   // Adjust confidence based on risk factors
@@ -191,19 +191,19 @@ function getMockPrediction(jobDescription: string) {
   
   if (isFakeByRules && !isFake) {
     // Rules detected fake but basic logic didn't - increase fake confidence
-    finalConfidenceFake = Math.max(confidenceFake, 0.70 + (riskScore / 400));
-    finalConfidenceFake = Math.min(finalConfidenceFake, 0.95);
+    finalConfidenceFake = Math.max(confidenceFake, 0.75 + (riskScore / 500));
+    finalConfidenceFake = Math.min(finalConfidenceFake, 0.98);
     finalConfidenceReal = 1 - finalConfidenceFake;
   } else if (finalIsFake) {
     // Both agree or basic logic detected fake - use higher confidence
-    finalConfidenceFake = Math.max(confidenceFake, 0.65 + (riskScore / 400));
-    finalConfidenceFake = Math.min(finalConfidenceFake, 0.95);
+    finalConfidenceFake = Math.max(confidenceFake, 0.70 + (riskScore / 500));
+    finalConfidenceFake = Math.min(finalConfidenceFake, 0.98);
     finalConfidenceReal = 1 - finalConfidenceFake;
   }
   
   // Final validation to ensure valid probabilities
-  finalConfidenceFake = Math.max(0.05, Math.min(0.95, finalConfidenceFake));
-  finalConfidenceReal = Math.max(0.05, Math.min(0.95, finalConfidenceReal));
+  finalConfidenceFake = Math.max(0.05, Math.min(0.98, finalConfidenceFake));
+  finalConfidenceReal = Math.max(0.05, Math.min(0.98, finalConfidenceReal));
   
   // Ensure they sum to 1
   const total = finalConfidenceFake + finalConfidenceReal;

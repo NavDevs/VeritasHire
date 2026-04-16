@@ -34,17 +34,69 @@
   border-color: var(--color-border);
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  touch-action: manipulation;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
+}
+
+/* Mobile-First Touch Targets */
+button, a, input, textarea, select {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Prevent iOS zoom on input focus */
+  }
+  
+  /* Improve tap targets on mobile */
+  button, a, [role="button"], input[type="submit"], input[type="button"] {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+  
+  /* Reduce excessive padding on mobile */
+  .container,
+  [class*="max-w-"] {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 375px) {
+  body {
+    font-size: 15px;
+  }
+  
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+  }
+  
+  h3 {
+    font-size: 1.5rem !important;
+  }
 }
 
 /* Grain Texture Overlay */
@@ -81,4 +133,40 @@ h1, h2, h3, h4, h5, h6 {
 
 .shadow-float {
   box-shadow: 0 10px 40px -10px rgba(193, 140, 93, 0.2);
+}
+
+/* Mobile Responsive Utilities */
+@media (max-width: 768px) {
+  /* Reduce blob sizes on mobile */
+  .blob-shape,
+  .blob-shape-2,
+  .blob-shape-3 {
+    transform: scale(0.6);
+  }
+  
+  /* Stack elements vertically on mobile */
+  .mobile-stack {
+    flex-direction: column;
+  }
+  
+  /* Full width cards on mobile */
+  .mobile-full-width {
+    width: 100%;
+  }
+}
+
+/* Optimize textareas for mobile */
+textarea {
+  font-size: 16px; /* Prevents iOS zoom on focus */
+  line-height: 1.6;
+}
+
+/* Improve form inputs on mobile */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"] {
+  font-size: 16px; /* Prevents iOS zoom */
 }

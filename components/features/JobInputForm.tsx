@@ -181,18 +181,18 @@ export function JobInputForm() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Input Card */}
-      <Card asymmetric shapeIndex={0} className="p-8 md:p-12">
+      <Card asymmetric shapeIndex={0} className="p-6 sm:p-8 md:p-12">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label
               htmlFor="job-description"
-              className="block text-lg font-heading font-bold text-foreground mb-3"
+              className="block text-base sm:text-lg font-heading font-bold text-foreground mb-2 sm:mb-3"
             >
               Paste Job Description
             </label>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
               Copy and paste the job posting text below to analyze if it&apos;s legitimate or potentially fake.
             </p>
             <textarea
@@ -200,7 +200,7 @@ export function JobInputForm() {
               value={jobDescription}
               onChange={(e) => setJobDescription(e.target.value)}
               placeholder="Example: We are looking for a motivated individual to join our team as a Remote Data Entry Specialist..."
-              className="w-full min-h-[250px] p-6 rounded-[2rem] bg-white/50 border border-border text-foreground placeholder:text-muted-foreground resize-y focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2 transition-all duration-300 text-base leading-relaxed"
+              className="w-full min-h-[200px] sm:min-h-[250px] p-4 sm:p-6 rounded-[2rem] bg-white/50 border border-border text-foreground placeholder:text-muted-foreground resize-y focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2 transition-all duration-300 text-base leading-relaxed"
               aria-describedby="char-count"
             />
             
@@ -242,13 +242,13 @@ export function JobInputForm() {
           </div>
 
           {/* Sample Job Buttons */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             <Button
               type="button"
               variant="outline"
               size="sm"
               onClick={() => loadSampleJob("fake")}
-              className="text-xs"
+              className="text-xs flex-1 sm:flex-none"
             >
               <ShieldAlert size={14} className="mr-2" />
               Try Fake Job
@@ -258,7 +258,7 @@ export function JobInputForm() {
               variant="outline"
               size="sm"
               onClick={() => loadSampleJob("real")}
-              className="text-xs"
+              className="text-xs flex-1 sm:flex-none"
             >
               <Shield size={14} className="mr-2" />
               Try Real Job
@@ -290,8 +290,8 @@ export function JobInputForm() {
               </>
             ) : (
               <>
-                <TrendingUp className="mr-2" size={20} />
-                Analyze Job Posting
+                <TrendingUp className="mr-2 hidden sm:inline" size={20} />
+                <span className="text-sm sm:text-base">Analyze Job Posting</span>
               </>
             )}
           </Button>
@@ -311,40 +311,40 @@ export function JobInputForm() {
           <Card
             asymmetric
             shapeIndex={2}
-            className={`p-8 md:p-10 ${
+            className={`p-6 sm:p-8 md:p-10 ${
               result.isFake ? "border-destructive/30" : "border-primary/30"
             }`}
           >
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Header */}
-              <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
                 {result.isFake ? (
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", delay: 0.2 }}
-                    className="h-20 w-20 rounded-full bg-destructive/10 flex items-center justify-center"
+                    className="h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-destructive/10 flex items-center justify-center flex-shrink-0"
                   >
-                    <ShieldAlert size={40} className="text-destructive" />
+                    <ShieldAlert size={32} className="sm:w-10 sm:h-10 text-destructive" />
                   </motion.div>
                 ) : (
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", delay: 0.2 }}
-                    className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center"
+                    className="h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0"
                   >
-                    <Shield size={40} className="text-primary" />
+                    <Shield size={32} className="sm:w-10 sm:h-10 text-primary" />
                   </motion.div>
                 )}
-                <div className="flex-1">
-                  <h3 className="text-3xl font-heading font-bold mb-1">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-2xl sm:text-3xl font-heading font-bold mb-1">
                     {result.isFake ? "Potentially Fake" : "Likely Legitimate"}
                   </h3>
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <Badge
                       variant={result.isFake ? "destructive" : "success"}
-                      className="text-base"
+                      className="text-sm sm:text-base"
                     >
                       Confidence: {(result.confidence * 100).toFixed(1)}%
                     </Badge>
@@ -357,15 +357,15 @@ export function JobInputForm() {
               </div>
 
               {/* Confidence Bars */}
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {/* Real Probability */}
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="font-semibold flex items-center gap-2">
+                    <span className="font-semibold text-sm sm:text-base flex items-center gap-2">
                       <Shield size={16} className="text-primary" />
                       Legitimate
                     </span>
-                    <span className="text-2xl font-heading font-bold text-primary">
+                    <span className="text-xl sm:text-2xl font-heading font-bold text-primary">
                       {(result.confidence_real * 100).toFixed(1)}%
                     </span>
                   </div>
@@ -382,11 +382,11 @@ export function JobInputForm() {
                 {/* Fake Probability */}
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="font-semibold flex items-center gap-2">
+                    <span className="font-semibold text-sm sm:text-base flex items-center gap-2">
                       <ShieldAlert size={16} className="text-destructive" />
                       Fake
                     </span>
-                    <span className="text-2xl font-heading font-bold text-destructive">
+                    <span className="text-xl sm:text-2xl font-heading font-bold text-destructive">
                       {(result.confidence_fake * 100).toFixed(1)}%
                     </span>
                   </div>
@@ -407,10 +407,10 @@ export function JobInputForm() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6 }}
-                  className="space-y-3 p-6 rounded-2xl bg-destructive/5 border border-destructive/20"
+                  className="space-y-3 p-4 sm:p-6 rounded-2xl bg-destructive/5 border border-destructive/20"
                 >
-                  <h4 className="font-heading font-semibold text-lg flex items-center gap-2">
-                    <AlertTriangle size={20} className="text-destructive" />
+                  <h4 className="font-heading font-semibold text-base sm:text-lg flex items-center gap-2">
+                    <AlertTriangle size={18} className="sm:w-5 sm:h-5 text-destructive" />
                     Red Flags Detected ({result.riskFactors.length})
                   </h4>
                   <div className="flex flex-wrap gap-2">
