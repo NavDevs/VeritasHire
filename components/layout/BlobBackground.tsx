@@ -21,11 +21,7 @@ const sizes = {
   lg: "w-[32rem] h-[32rem]",
 };
 
-const shapes = [
-  "blob-shape",
-  "blob-shape-2",
-  "blob-shape-3",
-];
+const shapes = ["blob-shape", "blob-shape-2", "blob-shape-3"];
 
 export function BlobBackground({
   className,
@@ -36,7 +32,7 @@ export function BlobBackground({
   return (
     <div
       className={cn(
-        "absolute blur-3xl pointer-events-none",
+        "pointer-events-none absolute blur-3xl",
         colors[color],
         sizes[size],
         shapes[shapeIndex % shapes.length],

@@ -29,7 +29,7 @@ const stats = [
 
 export function StatsSection() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+    <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4 md:gap-8">
       {stats.map((stat, index) => (
         <motion.div
           key={index}
@@ -39,19 +39,17 @@ export function StatsSection() {
           transition={{ duration: 0.4, delay: index * 0.1 }}
           className="group text-center"
         >
-          <Card className="p-4 sm:p-6 h-full flex flex-col items-center justify-center">
-            <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-3 sm:mb-4 transition-all duration-300 group-hover:bg-primary">
+          <Card className="flex h-full flex-col items-center justify-center p-4 sm:p-6">
+            <div className="bg-primary/10 group-hover:bg-primary mb-3 flex h-12 w-12 items-center justify-center rounded-2xl transition-all duration-300 sm:mb-4 sm:h-14 sm:w-14">
               <stat.icon
                 size={24}
-                className="sm:w-7 sm:h-7 text-primary transition-colors duration-300 group-hover:text-white"
+                className="text-primary transition-colors duration-300 group-hover:text-white sm:h-7 sm:w-7"
               />
             </div>
-            <div className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-foreground mb-1 sm:mb-2 transition-transform duration-300 group-hover:scale-110">
+            <div className="font-heading text-foreground mb-1 text-2xl font-bold transition-transform duration-300 group-hover:scale-110 sm:mb-2 sm:text-3xl md:text-4xl">
               {stat.value}
             </div>
-            <div className="text-xs sm:text-sm text-muted-foreground font-medium">
-              {stat.label}
-            </div>
+            <div className="text-muted-foreground text-xs font-medium sm:text-sm">{stat.label}</div>
           </Card>
         </motion.div>
       ))}

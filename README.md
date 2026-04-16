@@ -24,17 +24,20 @@ VeritasHire is an AI-powered platform designed to combat job fraud by analyzing 
 ## 🛠️ Tech Stack
 
 **Frontend:**
+
 - Next.js 16 (React Framework)
 - TypeScript
 - TailwindCSS
 - Framer Motion (Animations)
 
 **Backend:**
+
 - Python 3.10+
 - scikit-learn 1.3.2 (Machine Learning)
 - NLTK (Natural Language Processing)
 
 **ML Model:**
+
 - Algorithm: Random Forest Classifier
 - Features: 10,016 (10,000 TF-IDF + 16 scam indicators)
 - Training Data: 17,880 job postings
@@ -50,28 +53,32 @@ VeritasHire is an AI-powered platform designed to combat job fraud by analyzing 
 ### Installation
 
 1. **Clone the repository:**
+
 ```bash
 git clone https://github.com/NavDevs/VeritasHire.git
 cd VeritasHire/web-app
 ```
 
 2. **Install Node.js dependencies:**
+
 ```bash
 npm install
 ```
 
 3. **Install Python dependencies:**
+
 ```bash
 pip install -r requirements.txt
 ```
 
 4. **Start the development server:**
+
 ```bash
 npm run dev
 ```
 
 5. **Open your browser:**
-Navigate to [http://localhost:3000](http://localhost:3000)
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 📖 How to Use
 
@@ -109,12 +116,12 @@ Click **"Recent Analysis"** in the navigation bar to see your past analyses.
 
 ### Performance Metrics
 
-| Metric | Value |
-|--------|-------|
-| **Accuracy** | 97.79% |
+| Metric        | Value  |
+| ------------- | ------ |
+| **Accuracy**  | 97.79% |
 | **Precision** | 94.34% |
-| **Recall** | 57.80% |
-| **F1 Score** | 71.68% |
+| **Recall**    | 57.80% |
+| **F1 Score**  | 71.68% |
 
 ### 16 Scam Indicators
 
@@ -183,6 +190,7 @@ python export_model.py
 **Source**: Kaggle Fake Job Posting Detection Dataset
 
 **Statistics**:
+
 - Total job postings: 17,880
 - Legitimate jobs: 17,014 (95.16%)
 - Fake jobs: 866 (4.84%)
@@ -191,11 +199,13 @@ python export_model.py
 ## 🎨 Design
 
 **Color Palette**:
+
 - Primary: Moss Green (#5D7052)
 - Secondary: Terracotta (#C18C5D)
 - Background: Rice Paper (#FDFCF8)
 
 **Typography**:
+
 - Headings: Fraunces (Serif)
 - Body: Nunito (Rounded Sans-Serif)
 
@@ -215,6 +225,7 @@ MIT License - Educational College Project
 ## 👥 Credits
 
 **College Project** - Demonstrating:
+
 - Machine Learning integration with web applications
 - Modern React/Next.js development
 - Full-stack architecture

@@ -18,17 +18,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm install
+        working-directory: web-app
 
       - name: Run ESLint
         run: npm run lint
+        working-directory: web-app
 
       - name: Check formatting
         run: npx prettier --check .
+        working-directory: web-app
 
   # Job 2: Python ML Model Tests
   python-tests:
@@ -41,8 +44,8 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-          cache: 'pip'
+          python-version: "3.10"
+          cache: "pip"
 
       - name: Install Python dependencies
         run: |
@@ -50,15 +53,14 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run model tests
-        run: |
-          cd web-app
-          python test_model.py
+        run: python test_model.py
+        working-directory: web-app
 
       - name: Verify model files exist
         run: |
-          cd web-app
           test -f ml-models/model.pkl || echo "Model file missing"
           test -f ml-models/vectorizer.pkl || echo "Vectorizer file missing"
+        working-directory: web-app
 
   # Job 3: Build Next.js Application
   build:
@@ -72,8 +74,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm install
@@ -82,8 +84,8 @@ jobs:
       - name: Setup Python (for API routes)
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-          cache: 'pip'
+          python-version: "3.10"
+          cache: "pip"
 
       - name: Install Python dependencies
         run: |
@@ -122,8 +124,9 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
+          vercel-args: "--prod"
           working-directory: web-app
+          scope: ${{ secrets.VERCEL_ORG_ID }}
 
       - name: Deployment status
         run: |

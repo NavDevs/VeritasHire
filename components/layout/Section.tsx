@@ -38,14 +38,12 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden",
+        "relative overflow-hidden px-4 py-32 sm:px-6 lg:px-8",
         variants[variant],
         className
       )}
     >
-      <div className={cn("mx-auto", maxWidths[maxWidth])}>
-        {children}
-      </div>
+      <div className={cn("mx-auto", maxWidths[maxWidth])}>{children}</div>
     </section>
   );
 }

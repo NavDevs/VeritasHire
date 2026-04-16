@@ -16,7 +16,8 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: "VeritasHire - AI Career Assistant Platform",
-  description: "Detect fraudulent job postings and protect yourself from employment scams using machine learning and AI technology.",
+  description:
+    "Detect fraudulent job postings and protect yourself from employment scams using machine learning and AI technology.",
 };
 
 export default function RootLayout({
@@ -25,11 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${fraunces.variable} ${nunito.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${fraunces.variable} ${nunito.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }

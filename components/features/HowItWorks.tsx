@@ -23,7 +23,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 relative">
+    <div className="relative grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-3 md:gap-12">
       {steps.map((step, index) => (
         <motion.div
           key={index}
@@ -34,21 +34,21 @@ export function HowItWorks() {
           className="relative"
         >
           {/* Step Number */}
-          <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-secondary text-secondary-foreground font-heading font-bold text-base sm:text-lg flex items-center justify-center shadow-float">
+          <div className="bg-secondary text-secondary-foreground font-heading shadow-float absolute -left-3 -top-3 flex h-10 w-10 items-center justify-center rounded-full text-base font-bold sm:-left-4 sm:-top-4 sm:h-12 sm:w-12 sm:text-lg">
             {index + 1}
           </div>
 
           {/* Icon Container */}
-          <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 sm:mb-6 transition-all duration-300 hover:bg-primary group">
+          <div className="bg-primary/10 hover:bg-primary group mb-4 flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-300 sm:mb-6 sm:h-20 sm:w-20">
             <step.icon
               size={28}
-              className="sm:w-8 sm:h-8 text-primary transition-colors duration-300 group-hover:text-white"
+              className="text-primary transition-colors duration-300 group-hover:text-white sm:h-8 sm:w-8"
             />
           </div>
 
           {/* Content */}
-          <h3 className="text-lg sm:text-xl font-heading font-bold mb-2 sm:mb-3">{step.title}</h3>
-          <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+          <h3 className="font-heading mb-2 text-lg font-bold sm:mb-3 sm:text-xl">{step.title}</h3>
+          <p className="text-muted-foreground text-sm leading-relaxed sm:text-base">
             {step.description}
           </p>
         </motion.div>
@@ -56,7 +56,7 @@ export function HowItWorks() {
 
       {/* Curved SVG Connector */}
       <svg
-        className="absolute top-10 left-0 w-full h-20 hidden md:block pointer-events-none"
+        className="pointer-events-none absolute left-0 top-10 hidden h-20 w-full md:block"
         viewBox="0 0 800 80"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

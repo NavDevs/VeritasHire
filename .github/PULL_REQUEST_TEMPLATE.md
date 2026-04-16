@@ -3,9 +3,11 @@
 <!-- Provide a brief description of the changes in this PR -->
 
 ### What does this PR do?
+
 <!-- Describe the purpose and scope of this PR -->
 
 ### Related Issues
+
 <!-- Link to any related issues (e.g., "Fixes #123" or "Closes #456") -->
 
 ---
@@ -28,6 +30,7 @@
 ## 🧪 Testing
 
 ### How has this been tested?
+
 <!-- Describe the tests you ran and how to reproduce them -->
 
 - [ ] Unit tests pass (`python test_model.py`)
@@ -37,11 +40,12 @@
 - [ ] No console errors/warnings
 
 ### Test Instructions
+
 <!-- Step-by-step instructions for testing this PR -->
 
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ---
 
@@ -50,7 +54,7 @@
 <!-- Add screenshots or GIFs showing UI changes -->
 
 | Before | After |
-|--------|-------|
+| ------ | ----- |
 |        |       |
 
 ---
@@ -75,6 +79,7 @@
 <!-- Add any additional information, context, or concerns -->
 
 ### Performance Impact
+
 <!-- Does this PR affect performance? -->
 
 - [ ] No significant impact
@@ -84,6 +89,7 @@
 **Details:**
 
 ### Security Considerations
+
 <!-- Are there any security implications? -->
 
 - [ ] No security impact
@@ -93,6 +99,7 @@
 **Details:**
 
 ### Breaking Changes
+
 <!-- List any breaking changes -->
 
 - [ ] No breaking changes
@@ -105,6 +112,7 @@
 ## 🎓 For Reviewers
 
 ### Key Areas to Review
+
 <!-- Highlight areas that need special attention -->
 
 - [ ] ML model accuracy and predictions
@@ -115,9 +123,10 @@
 - [ ] Edge cases
 
 ### Questions for Reviewers
+
 <!-- Any specific questions or concerns? -->
 
-1. 
+1.
 
 ---
 

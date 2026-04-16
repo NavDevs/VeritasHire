@@ -8,12 +8,7 @@ interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode;
 }
 
-export function Badge({
-  variant = "default",
-  children,
-  className,
-  ...props
-}: BadgeProps) {
+export function Badge({ variant = "default", children, className, ...props }: BadgeProps) {
   const baseStyles =
     "inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300";
 
@@ -26,10 +21,7 @@ export function Badge({
   };
 
   return (
-    <span
-      className={cn(baseStyles, variants[variant], className)}
-      {...props}
-    >
+    <span className={cn(baseStyles, variants[variant], className)} {...props}>
       {children}
     </span>
   );

@@ -34,10 +34,7 @@ export function Card({
     : "rounded-[2rem]";
 
   return (
-    <div
-      className={cn(baseStyles, shapeStyles, className)}
-      {...props}
-    >
+    <div className={cn(baseStyles, shapeStyles, className)} {...props}>
       {children}
     </div>
   );

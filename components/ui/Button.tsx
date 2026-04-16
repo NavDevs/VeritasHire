@@ -24,8 +24,7 @@ export function Button({
       "bg-primary text-primary-foreground shadow-[0_4px_20px_-2px_rgba(93,112,82,0.15)] hover:scale-105 hover:shadow-[0_6px_24px_-4px_rgba(93,112,82,0.25)]",
     outline:
       "border-2 border-secondary text-secondary bg-transparent hover:bg-secondary/10 hover:scale-105",
-    ghost:
-      "text-primary bg-transparent hover:bg-primary/10 hover:scale-105",
+    ghost: "text-primary bg-transparent hover:bg-primary/10 hover:scale-105",
   };
 
   const sizes = {
@@ -35,10 +34,7 @@ export function Button({
   };
 
   return (
-    <button
-      className={cn(baseStyles, variants[variant], sizes[size], className)}
-      {...props}
-    >
+    <button className={cn(baseStyles, variants[variant], sizes[size], className)} {...props}>
       {children}
     </button>
   );
