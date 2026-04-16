@@ -280,11 +280,16 @@ function getMockPrediction(jobDescription: string) {
 
   // Calculate confidence based on risk score
   let confidenceFake = Math.min(riskScore / 100, 0.95);
-  let confidenceReal = 1 - confidenceFake;
 
-  // Add some randomness for realism
-  confidenceFake = Math.max(0.5, confidenceFake + (Math.random() * 0.1 - 0.05));
-  confidenceReal = 1 - confidenceFake;
+  if (riskScore === 0) {
+    // High confidence it's real if no risk factors are found
+    confidenceFake = 0.05 + (Math.random() * 0.1); // 5% to 15% fake -> 85% to 95% real
+  } else {
+    // Add some randomness for realism
+    confidenceFake = Math.max(0.15, confidenceFake + (Math.random() * 0.1 - 0.05));
+  }
+  
+  let confidenceReal = 1 - confidenceFake;
 
   // Determine if fake - LOWERED thresholds to catch more fake jobs (improved recall)
   isFake = riskScore > 50 || (riskFactors.length >= 3 && riskScore > 35);
